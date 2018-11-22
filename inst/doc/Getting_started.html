@@ -12,7 +12,7 @@
 
 <meta name="author" content="Colin Fay" />
 
-<meta name="date" content="2018-01-04" />
+<meta name="date" content="2018-11-22" />
 
 <title>Getting started</title>
 
@@ -22,7 +22,7 @@
 <style type="text/css">
 a.sourceLine { display: inline-block; line-height: 1.25; }
 a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; position: absolute; }
+a.sourceLine:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 div.sourceCode { margin: 1em 0; }
@@ -35,13 +35,11 @@ code.sourceCode { white-space: pre-wrap; }
 a.sourceLine { text-indent: -1em; padding-left: 1em; }
 }
 pre.numberSource a.sourceLine
-  { position: relative; }
-pre.numberSource a.sourceLine:empty
-  { position: absolute; }
+  { position: relative; left: -4em; }
 pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
-    position: absolute; left: -5em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all;
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -280,130 +278,102 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">Getting started</h1>
 <h4 class="author"><em>Colin Fay</em></h4>
-<h4 class="date"><em>2018-01-04</em></h4>
+<h4 class="date"><em>2018-11-22</em></h4>
 
 
 
-<section id="tidystringdist" class="level1">
-<h1>tidystringdist</h1>
-<p>Compute string distance the tidy way. Built on top of the ‘stringdist’ package.</p>
-<section id="install-tidystringdist" class="level2">
-<h2>Install tidystringdist</h2>
-<p>You’ll get the dev version on:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;ColinFay/tidystringdist&quot;</span>)</a></code></pre></div>
-<p>Stable version is available with :</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;tidystringdist&quot;</span>)</a></code></pre></div>
-</section>
-<section id="tidystringdist-basic-workflow" class="level2">
-<h2>tidystringdist basic workflow</h2>
-</section>
-<section id="tidycomb" class="level2">
-<h2>tidycomb</h2>
-<p>First, you need to create a tibble with the combinations of words you want to compare. You can do this with the <code>tidy_comb</code> and <code>tidy_comb_all</code> functions. The first takes a base word and combines it with each elements of a list or a column of a data.frame, the 2nd combines all the possible couples from a list or a column.</p>
-<p>If you already have a data.frame with two columns containing the strings to compare, you can skip this part.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(tidystringdist)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb3-3" data-line-number="3"><span class="kw">tidy_comb_all</span>(LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>])</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4"><span class="co">#&gt; # A tibble: 3 x 2</span></a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="co">#&gt;      V1    V2</span></a>
-<a class="sourceLine" id="cb3-6" data-line-number="6"><span class="co">#&gt; * &lt;chr&gt; &lt;chr&gt;</span></a>
-<a class="sourceLine" id="cb3-7" data-line-number="7"><span class="co">#&gt; 1     A     B</span></a>
-<a class="sourceLine" id="cb3-8" data-line-number="8"><span class="co">#&gt; 2     A     C</span></a>
-<a class="sourceLine" id="cb3-9" data-line-number="9"><span class="co">#&gt; 3     B     C</span></a></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">tidy_comb_all</span>(iris, Species)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="co">#&gt; # A tibble: 3 x 2</span></a>
-<a class="sourceLine" id="cb4-3" data-line-number="3"><span class="co">#&gt;           V1         V2</span></a>
-<a class="sourceLine" id="cb4-4" data-line-number="4"><span class="co">#&gt; *      &lt;chr&gt;      &lt;chr&gt;</span></a>
-<a class="sourceLine" id="cb4-5" data-line-number="5"><span class="co">#&gt; 1     setosa versicolor</span></a>
-<a class="sourceLine" id="cb4-6" data-line-number="6"><span class="co">#&gt; 2     setosa  virginica</span></a>
-<a class="sourceLine" id="cb4-7" data-line-number="7"><span class="co">#&gt; 3 versicolor  virginica</span></a></code></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">tidy_comb</span>(<span class="st">&quot;Paris&quot;</span>, state.name[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>])</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2"><span class="co">#&gt; # A tibble: 3 x 2</span></a>
-<a class="sourceLine" id="cb5-3" data-line-number="3"><span class="co">#&gt;        V1    V2</span></a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="co">#&gt; *   &lt;chr&gt; &lt;chr&gt;</span></a>
-<a class="sourceLine" id="cb5-5" data-line-number="5"><span class="co">#&gt; 1 Alabama Paris</span></a>
-<a class="sourceLine" id="cb5-6" data-line-number="6"><span class="co">#&gt; 2  Alaska Paris</span></a>
-<a class="sourceLine" id="cb5-7" data-line-number="7"><span class="co">#&gt; 3 Arizona Paris</span></a></code></pre></div>
-<section id="tidy_string_dist" class="level3">
-<h3>tidy_string_dist</h3>
-<p>Once you’ve got this data.frame, you can use <code>tidy_string_dist</code> to compute string distance. This function takes a data.frame, the two columns containing the strings, and a stringdist method.</p>
-<p>Note that if you’ve used the <code>tidy_comb</code> function to create you data.frame, you won’t need to set the column names.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw">library</span>(dplyr)</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">data</span>(starwars)</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">tidy_comb_sw &lt;-<span class="st"> </span><span class="kw">tidy_comb_all</span>(starwars, name)</a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="kw">tidy_stringdist</span>(tidy_comb_sw)</a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"><span class="co">#&gt; Warning in do_dist(a = b, b = a, method = method, weight = weight, maxDist</span></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co">#&gt; = maxDist, : Non-printable ascii or non-ascii characters in soundex.</span></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7"><span class="co">#&gt; Results may be unreliable. See ?printable_ascii.</span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co">#&gt; # A tibble: 3,741 x 12</span></a>
-<a class="sourceLine" id="cb6-9" data-line-number="9"><span class="co">#&gt;                V1                 V2   osa    lv    dl hamming   lcs qgram</span></a>
-<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co">#&gt;  *          &lt;chr&gt;              &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11"><span class="co">#&gt;  1 Luke Skywalker              C-3PO    14    14    14     Inf    19    19</span></a>
-<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co">#&gt;  2 Luke Skywalker              R2-D2    14    14    14     Inf    19    19</span></a>
-<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="co">#&gt;  3 Luke Skywalker        Darth Vader    11    11    11     Inf    17    17</span></a>
-<a class="sourceLine" id="cb6-14" data-line-number="14"><span class="co">#&gt;  4 Luke Skywalker        Leia Organa    11    11    11     Inf    17    15</span></a>
-<a class="sourceLine" id="cb6-15" data-line-number="15"><span class="co">#&gt;  5 Luke Skywalker          Owen Lars    12    12    12     Inf    15    11</span></a>
-<a class="sourceLine" id="cb6-16" data-line-number="16"><span class="co">#&gt;  6 Luke Skywalker Beru Whitesun lars    16    16    16     Inf    22    18</span></a>
-<a class="sourceLine" id="cb6-17" data-line-number="17"><span class="co">#&gt;  7 Luke Skywalker              R5-D4    14    14    14     Inf    19    19</span></a>
-<a class="sourceLine" id="cb6-18" data-line-number="18"><span class="co">#&gt;  8 Luke Skywalker  Biggs Darklighter    13    13    13     Inf    21    19</span></a>
-<a class="sourceLine" id="cb6-19" data-line-number="19"><span class="co">#&gt;  9 Luke Skywalker     Obi-Wan Kenobi    14    14    14      14    24    22</span></a>
-<a class="sourceLine" id="cb6-20" data-line-number="20"><span class="co">#&gt; 10 Luke Skywalker   Anakin Skywalker     5     5     5     Inf     8     8</span></a>
-<a class="sourceLine" id="cb6-21" data-line-number="21"><span class="co">#&gt; # ... with 3,731 more rows, and 4 more variables: cosine &lt;dbl&gt;,</span></a>
-<a class="sourceLine" id="cb6-22" data-line-number="22"><span class="co">#&gt; #   jaccard &lt;dbl&gt;, jw &lt;dbl&gt;, soundex &lt;dbl&gt;</span></a></code></pre></div>
+<div id="getting-started-with-tidystringdist" class="section level1">
+<h1>Getting started with {tidystringdist}</h1>
+<div id="about-tidystringdist" class="section level2">
+<h2>About {tidystringdist}</h2>
+<p><code>{tidystringdist}</code> is a package that extends the <a href="https://github.com/markvanderloo/stringdist">{stringdist}</a> package with tidy data principles.</p>
+<p>The idea is to perform string distance calculation and combine it with functions for data manipulation and visualisation from the tidyverse framework.</p>
+</div>
+<div id="installing-tidystringdist" class="section level2">
+<h2>Installing tidystringdist</h2>
+<p>You can install the last stable version from GitHub with:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;tidystringdist&quot;</span>)</a></code></pre></div>
+<p>Or the dev version from GitHub:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># install.packages(remotes)</span></a>
+<a class="sourceLine" id="cb2-2" title="2">remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;ColinFay/tidystringdist&quot;</span>)</a></code></pre></div>
+</div>
+<div id="tidystringdist-basic-workflow" class="section level2">
+<h2>{tidystringdist} basic workflow</h2>
+</div>
+<div id="tidycomb" class="section level2">
+<h2><code>tidycomb()</code></h2>
+<p>The <code>tidycomb()</code> &amp; <code>tidy_comb_all()</code> functions return all the possible combinations from a vector / a data.frame and a column / two vectors:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">library</span>(tidystringdist)</a>
+<a class="sourceLine" id="cb3-2" title="2"></a>
+<a class="sourceLine" id="cb3-3" title="3"><span class="kw">tidy_comb_all</span>(LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>])</a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="co">#&gt; # A tibble: 3 x 2</span></a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="co">#&gt;   V1    V2   </span></a>
+<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt; * &lt;chr&gt; &lt;chr&gt;</span></a>
+<a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt; 1 A     B    </span></a>
+<a class="sourceLine" id="cb3-8" title="8"><span class="co">#&gt; 2 A     C    </span></a>
+<a class="sourceLine" id="cb3-9" title="9"><span class="co">#&gt; 3 B     C</span></a>
+<a class="sourceLine" id="cb3-10" title="10"></a>
+<a class="sourceLine" id="cb3-11" title="11"><span class="kw">tidy_comb_all</span>(iris, Species)</a>
+<a class="sourceLine" id="cb3-12" title="12"><span class="co">#&gt; # A tibble: 3 x 2</span></a>
+<a class="sourceLine" id="cb3-13" title="13"><span class="co">#&gt;   V1         V2        </span></a>
+<a class="sourceLine" id="cb3-14" title="14"><span class="co">#&gt; * &lt;chr&gt;      &lt;chr&gt;     </span></a>
+<a class="sourceLine" id="cb3-15" title="15"><span class="co">#&gt; 1 setosa     versicolor</span></a>
+<a class="sourceLine" id="cb3-16" title="16"><span class="co">#&gt; 2 setosa     virginica </span></a>
+<a class="sourceLine" id="cb3-17" title="17"><span class="co">#&gt; 3 versicolor virginica</span></a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">tidy_comb</span>(<span class="st">&quot;Paris&quot;</span>, state.name)</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="co">#&gt; # A tibble: 50 x 2</span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="co">#&gt;    V1          V2   </span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt;  * &lt;chr&gt;       &lt;chr&gt;</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt;  1 Alabama     Paris</span></a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt;  2 Alaska      Paris</span></a>
+<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt;  3 Arizona     Paris</span></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt;  4 Arkansas    Paris</span></a>
+<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt;  5 California  Paris</span></a>
+<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt;  6 Colorado    Paris</span></a>
+<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt;  7 Connecticut Paris</span></a>
+<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt;  8 Delaware    Paris</span></a>
+<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt;  9 Florida     Paris</span></a>
+<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt; 10 Georgia     Paris</span></a>
+<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt; # ... with 40 more rows</span></a></code></pre></div>
+</div>
+<div id="compute-string-distance" class="section level2">
+<h2>Compute string distance</h2>
+<p>Once you’ve got this data.frame, you can use <code>tidy_string_dist()</code> to compute string distance. This function takes a data.frame, the two columns containing the strings, and one or more stringdist methods.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">comb &lt;-<span class="st"> </span><span class="kw">tidy_comb_all</span>(state.name) </a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="kw">tidy_stringdist</span>(comb)</a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="co">#&gt; # A tibble: 1,225 x 12</span></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="co">#&gt;    V1    V2      osa    lv    dl hamming   lcs qgram cosine jaccard    jw</span></a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="co">#&gt;  * &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="co">#&gt;  1 Alab… Alas…     3     3     3     Inf     5     5  0.216   0.571 0.254</span></a>
+<a class="sourceLine" id="cb5-7" title="7"><span class="co">#&gt;  2 Alab… Ariz…     5     5     5       5    10    10  0.581   0.8   0.476</span></a>
+<a class="sourceLine" id="cb5-8" title="8"><span class="co">#&gt;  3 Alab… Arka…     6     6     6     Inf     9     9  0.440   0.778 0.399</span></a>
+<a class="sourceLine" id="cb5-9" title="9"><span class="co">#&gt;  4 Alab… Cali…     8     8     8     Inf    13    11  0.481   0.818 0.535</span></a>
+<a class="sourceLine" id="cb5-10" title="10"><span class="co">#&gt;  5 Alab… Colo…     6     6     6     Inf    11    11  0.704   0.778 0.488</span></a>
+<a class="sourceLine" id="cb5-11" title="11"><span class="co">#&gt;  6 Alab… Conn…    11    11    11     Inf    18    18  1       1     1    </span></a>
+<a class="sourceLine" id="cb5-12" title="12"><span class="co">#&gt;  7 Alab… Dela…     5     5     5     Inf     9     9  0.440   0.778 0.399</span></a>
+<a class="sourceLine" id="cb5-13" title="13"><span class="co">#&gt;  8 Alab… Flor…     5     5     5       5    10    10  0.581   0.8   0.476</span></a>
+<a class="sourceLine" id="cb5-14" title="14"><span class="co">#&gt;  9 Alab… Geor…     6     6     6       6    12    12  0.686   0.909 0.571</span></a>
+<a class="sourceLine" id="cb5-15" title="15"><span class="co">#&gt; 10 Alab… Hawa…     5     5     5     Inf     9     9  0.474   0.875 0.460</span></a>
+<a class="sourceLine" id="cb5-16" title="16"><span class="co">#&gt; # ... with 1,215 more rows, and 1 more variable: soundex &lt;dbl&gt;</span></a></code></pre></div>
 <p>Default call compute all the methods. You can use specific method with the <code>method</code> argument:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">tidy_stringdist</span>(tidy_comb_sw, <span class="dt">method =</span> <span class="kw">c</span>(<span class="st">&quot;osa&quot;</span>,<span class="st">&quot;jw&quot;</span>))</a>
-<a class="sourceLine" id="cb7-2" data-line-number="2"><span class="co">#&gt; # A tibble: 3,741 x 4</span></a>
-<a class="sourceLine" id="cb7-3" data-line-number="3"><span class="co">#&gt;                V1                 V2   osa        jw</span></a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="co">#&gt;  *          &lt;chr&gt;              &lt;chr&gt; &lt;dbl&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb7-5" data-line-number="5"><span class="co">#&gt;  1 Luke Skywalker              C-3PO    14 1.0000000</span></a>
-<a class="sourceLine" id="cb7-6" data-line-number="6"><span class="co">#&gt;  2 Luke Skywalker              R2-D2    14 1.0000000</span></a>
-<a class="sourceLine" id="cb7-7" data-line-number="7"><span class="co">#&gt;  3 Luke Skywalker        Darth Vader    11 0.5752165</span></a>
-<a class="sourceLine" id="cb7-8" data-line-number="8"><span class="co">#&gt;  4 Luke Skywalker        Leia Organa    11 0.5335498</span></a>
-<a class="sourceLine" id="cb7-9" data-line-number="9"><span class="co">#&gt;  5 Luke Skywalker          Owen Lars    12 0.4624339</span></a>
-<a class="sourceLine" id="cb7-10" data-line-number="10"><span class="co">#&gt;  6 Luke Skywalker Beru Whitesun lars    16 0.4656085</span></a>
-<a class="sourceLine" id="cb7-11" data-line-number="11"><span class="co">#&gt;  7 Luke Skywalker              R5-D4    14 1.0000000</span></a>
-<a class="sourceLine" id="cb7-12" data-line-number="12"><span class="co">#&gt;  8 Luke Skywalker  Biggs Darklighter    13 0.5728291</span></a>
-<a class="sourceLine" id="cb7-13" data-line-number="13"><span class="co">#&gt;  9 Luke Skywalker     Obi-Wan Kenobi    14 0.6349206</span></a>
-<a class="sourceLine" id="cb7-14" data-line-number="14"><span class="co">#&gt; 10 Luke Skywalker   Anakin Skywalker     5 0.2816558</span></a>
-<a class="sourceLine" id="cb7-15" data-line-number="15"><span class="co">#&gt; # ... with 3,731 more rows</span></a></code></pre></div>
-</section>
-</section>
-<section id="tidyverse-workflow" class="level2">
-<h2>Tidyverse workflow</h2>
-<p>The goal is to provide a convenient interface to work with other tools from the tidyverse.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw">tidy_stringdist</span>(tidy_comb_sw, <span class="dt">method=</span> <span class="st">&quot;osa&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(osa <span class="op">&gt;</span><span class="st"> </span><span class="dv">20</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(osa))</a>
-<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="co">#&gt; # A tibble: 11 x 3</span></a>
-<a class="sourceLine" id="cb8-5" data-line-number="5"><span class="co">#&gt;                       V1                    V2   osa</span></a>
-<a class="sourceLine" id="cb8-6" data-line-number="6"><span class="co">#&gt;                    &lt;chr&gt;                 &lt;chr&gt; &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb8-7" data-line-number="7"><span class="co">#&gt;  1                 C-3PO Jabba Desilijic Tiure    21</span></a>
-<a class="sourceLine" id="cb8-8" data-line-number="8"><span class="co">#&gt;  2                 C-3PO Wicket Systri Warrick    21</span></a>
-<a class="sourceLine" id="cb8-9" data-line-number="9"><span class="co">#&gt;  3                 R2-D2 Wicket Systri Warrick    21</span></a>
-<a class="sourceLine" id="cb8-10" data-line-number="10"><span class="co">#&gt;  4                 R5-D4 Wicket Systri Warrick    21</span></a>
-<a class="sourceLine" id="cb8-11" data-line-number="11"><span class="co">#&gt;  5 Jabba Desilijic Tiure                 IG-88    21</span></a>
-<a class="sourceLine" id="cb8-12" data-line-number="12"><span class="co">#&gt;  6 Jabba Desilijic Tiure                 Cordé    21</span></a>
-<a class="sourceLine" id="cb8-13" data-line-number="13"><span class="co">#&gt;  7 Jabba Desilijic Tiure                R4-P17    21</span></a>
-<a class="sourceLine" id="cb8-14" data-line-number="14"><span class="co">#&gt;  8 Jabba Desilijic Tiure                   BB8    21</span></a>
-<a class="sourceLine" id="cb8-15" data-line-number="15"><span class="co">#&gt;  9                 IG-88 Wicket Systri Warrick    21</span></a>
-<a class="sourceLine" id="cb8-16" data-line-number="16"><span class="co">#&gt; 10 Wicket Systri Warrick                R4-P17    21</span></a>
-<a class="sourceLine" id="cb8-17" data-line-number="17"><span class="co">#&gt; 11 Wicket Systri Warrick                   BB8    21</span></a></code></pre></div>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">starwars <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(species <span class="op">==</span><span class="st"> &quot;Droid&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="st">  </span><span class="kw">tidy_comb_all</span>(name) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"><span class="st">  </span><span class="kw">tidy_stringdist</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="st">  </span><span class="kw">summarise_if</span>(is.numeric, mean)</a>
-<a class="sourceLine" id="cb9-6" data-line-number="6"><span class="co">#&gt; # A tibble: 1 x 10</span></a>
-<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co">#&gt;     osa    lv    dl hamming   lcs qgram    cosine   jaccard        jw</span></a>
-<a class="sourceLine" id="cb9-8" data-line-number="8"><span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="co">#&gt; 1   4.4   4.4   4.4     Inf   7.4   7.4 0.8304896 0.8671032 0.6422222</span></a>
-<a class="sourceLine" id="cb9-10" data-line-number="10"><span class="co">#&gt; # ... with 1 more variables: soundex &lt;dbl&gt;</span></a></code></pre></div>
-<section id="contact" class="level3">
-<h3>Contact</h3>
-<p>Questions and feedbacks <a href="mailto:contact@colinfay.me">welcome</a>!</p>
-</section>
-</section>
-</section>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">comb &lt;-<span class="st"> </span><span class="kw">tidy_comb_all</span>(state.name)</a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw">tidy_stringdist</span>(comb, <span class="dt">method =</span> <span class="kw">c</span>(<span class="st">&quot;osa&quot;</span>,<span class="st">&quot;jw&quot;</span>))</a>
+<a class="sourceLine" id="cb6-3" title="3"><span class="co">#&gt; # A tibble: 1,225 x 4</span></a>
+<a class="sourceLine" id="cb6-4" title="4"><span class="co">#&gt;    V1      V2            osa    jw</span></a>
+<a class="sourceLine" id="cb6-5" title="5"><span class="co">#&gt;  * &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;</span></a>
+<a class="sourceLine" id="cb6-6" title="6"><span class="co">#&gt;  1 Alabama Alaska          3 0.254</span></a>
+<a class="sourceLine" id="cb6-7" title="7"><span class="co">#&gt;  2 Alabama Arizona         5 0.476</span></a>
+<a class="sourceLine" id="cb6-8" title="8"><span class="co">#&gt;  3 Alabama Arkansas        6 0.399</span></a>
+<a class="sourceLine" id="cb6-9" title="9"><span class="co">#&gt;  4 Alabama California      8 0.535</span></a>
+<a class="sourceLine" id="cb6-10" title="10"><span class="co">#&gt;  5 Alabama Colorado        6 0.488</span></a>
+<a class="sourceLine" id="cb6-11" title="11"><span class="co">#&gt;  6 Alabama Connecticut    11 1    </span></a>
+<a class="sourceLine" id="cb6-12" title="12"><span class="co">#&gt;  7 Alabama Delaware        5 0.399</span></a>
+<a class="sourceLine" id="cb6-13" title="13"><span class="co">#&gt;  8 Alabama Florida         5 0.476</span></a>
+<a class="sourceLine" id="cb6-14" title="14"><span class="co">#&gt;  9 Alabama Georgia         6 0.571</span></a>
+<a class="sourceLine" id="cb6-15" title="15"><span class="co">#&gt; 10 Alabama Hawaii          5 0.460</span></a>
+<a class="sourceLine" id="cb6-16" title="16"><span class="co">#&gt; # ... with 1,215 more rows</span></a></code></pre></div>
+</div>
+</div>
 
 
 
