@@ -1,5 +1,5 @@
-e86dc72396e9975205015fac6ad4cb1c *DESCRIPTION
-0415cc42e49162c660c31e1c33153a9d *LICENSE
+6783c636e043a6305fc4f18ab99d307b *DESCRIPTION
+5939797a1dc0765c0d35188c744de609 *LICENSE
 3714c13d8f6722dac6efa06c97ab04ee *NAMESPACE
 b8bba27049a494bc46fe26a609d14041 *NEWS.md
 15ead4c44adeef259498e54ed8c49251 *R/globalVariables.R
@@ -10,10 +10,10 @@ b8bba27049a494bc46fe26a609d14041 *NEWS.md
 480e8fd129128d009eb2272c657625c2 *build/vignette.rds
 ccd249689d2f9eea2f409f76baa4917f *inst/doc/Getting_started.R
 7998282504f76b2bd06fdbbcc3df4038 *inst/doc/Getting_started.Rmd
-92628dbccb6b798692bf2c8352613bcd *inst/doc/Getting_started.html
+7d1bde4eff8cab20479c6da90af7a328 *inst/doc/Getting_started.html
 f6748f19f44390a530f47160351f02c1 *inst/doc/tests_and_coverage.R
 f48a7f203470337083ff489ce2c64d15 *inst/doc/tests_and_coverage.Rmd
-cc7e9df5427d4155522d61c218ffe998 *inst/doc/tests_and_coverage.html
+a91193fdb731dac0dedde84e5de05ea0 *inst/doc/tests_and_coverage.html
 5922323ee42060eabbfd08620a250b95 *man/tidy_comb.Rd
 cc96f18db971b3768fa4f78b18fc856e *man/tidy_comb_all.Rd
 a3bfd1620a77f6cc86351a7758096a84 *man/tidy_stringdist.Rd
