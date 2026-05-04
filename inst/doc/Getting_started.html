@@ -1,87 +1,118 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="author" content="Colin Fay" />
 
-<meta name="date" content="2019-03-20" />
+<meta name="date" content="2026-05-04" />
 
 <title>Getting started</title>
 
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
+
+<style type="text/css">
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
 
 
-<style type="text/css">code{white-space: pre;}</style>
+
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
 div.sourceCode
-  {  }
+{ }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
 </style>
 <script>
 // apply pandoc div.sourceCode style to pre.sourceCode instead
@@ -90,13 +121,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   for (var i = 0; i < sheets.length; i++) {
     if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
     try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    for (var j = 0; j < rules.length; j++) {
+    var j = 0;
+    while (j < rules.length) {
       var rule = rules[j];
       // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
       var style = rule.style.cssText;
       // check if color or background-color is set
-      if (rule.style.color === '' || rule.style.backgroundColor === '') continue;
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
       // replace div.sourceCode by a pre.sourceCode rule
       sheets[i].deleteRule(j);
       sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
@@ -104,6 +142,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   }
 })();
 </script>
+
 
 
 
@@ -117,9 +156,6 @@ padding-right: 2em;
 font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 font-size: 14px;
 line-height: 1.35;
-}
-#header {
-text-align: center;
 }
 #TOC {
 clear: both;
@@ -288,7 +324,8 @@ code > span.st { color: #d14; }
 code > span.co { color: #888888; font-style: italic; } 
 code > span.ot { color: #007020; } 
 code > span.al { color: #ff0000; font-weight: bold; } 
-code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+code > span.fu { color: #900; font-weight: bold; } 
+code > span.er { color: #a61717; background-color: #e3d2d2; } 
 </style>
 
 
@@ -303,7 +340,7 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 
 <h1 class="title toc-ignore">Getting started</h1>
 <h4 class="author">Colin Fay</h4>
-<h4 class="date">2019-03-20</h4>
+<h4 class="date">2026-05-04</h4>
 
 
 
@@ -311,95 +348,108 @@ code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61
 <h1>Getting started with {tidystringdist}</h1>
 <div id="about-tidystringdist" class="section level2">
 <h2>About {tidystringdist}</h2>
-<p><code>{tidystringdist}</code> is a package that extends the <a href="https://github.com/markvanderloo/stringdist">{stringdist}</a> package with tidy data principles.</p>
-<p>The idea is to perform string distance calculation and combine it with functions for data manipulation and visualisation from the tidyverse framework.</p>
+<p><code>{tidystringdist}</code> is a package that extends the <a href="https://github.com/markvanderloo/stringdist">{stringdist}</a>
+package with tidy data principles.</p>
+<p>The idea is to perform string distance calculation and combine it
+with functions for data manipulation and visualisation from the
+tidyverse framework.</p>
 </div>
 <div id="installing-tidystringdist" class="section level2">
 <h2>Installing tidystringdist</h2>
 <p>You can install the last stable version from GitHub with:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">install.packages</span>(<span class="st">&quot;tidystringdist&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;tidystringdist&quot;</span>)</span></code></pre></div>
 <p>Or the dev version from GitHub:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># install.packages(remotes)</span></a>
-<a class="sourceLine" id="cb2-2" title="2">remotes<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;ColinFay/tidystringdist&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># install.packages(remotes)</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;ColinFay/tidystringdist&quot;</span>)</span></code></pre></div>
 </div>
 <div id="tidystringdist-basic-workflow" class="section level2">
 <h2>{tidystringdist} basic workflow</h2>
 </div>
 <div id="tidycomb" class="section level2">
 <h2><code>tidycomb()</code></h2>
-<p>The <code>tidycomb()</code> &amp; <code>tidy_comb_all()</code> functions return all the possible combinations from a vector / a data.frame and a column / two vectors:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="kw">library</span>(tidystringdist)</a>
-<a class="sourceLine" id="cb3-2" title="2"></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="kw">tidy_comb_all</span>(LETTERS[<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>])</a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="co">#&gt; # A tibble: 3 x 2</span></a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="co">#&gt;   V1    V2   </span></a>
-<a class="sourceLine" id="cb3-6" title="6"><span class="co">#&gt; * &lt;chr&gt; &lt;chr&gt;</span></a>
-<a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt; 1 A     B    </span></a>
-<a class="sourceLine" id="cb3-8" title="8"><span class="co">#&gt; 2 A     C    </span></a>
-<a class="sourceLine" id="cb3-9" title="9"><span class="co">#&gt; 3 B     C</span></a>
-<a class="sourceLine" id="cb3-10" title="10"></a>
-<a class="sourceLine" id="cb3-11" title="11"><span class="kw">tidy_comb_all</span>(iris, Species)</a>
-<a class="sourceLine" id="cb3-12" title="12"><span class="co">#&gt; # A tibble: 3 x 2</span></a>
-<a class="sourceLine" id="cb3-13" title="13"><span class="co">#&gt;   V1         V2        </span></a>
-<a class="sourceLine" id="cb3-14" title="14"><span class="co">#&gt; * &lt;chr&gt;      &lt;chr&gt;     </span></a>
-<a class="sourceLine" id="cb3-15" title="15"><span class="co">#&gt; 1 setosa     versicolor</span></a>
-<a class="sourceLine" id="cb3-16" title="16"><span class="co">#&gt; 2 setosa     virginica </span></a>
-<a class="sourceLine" id="cb3-17" title="17"><span class="co">#&gt; 3 versicolor virginica</span></a></code></pre></div>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw">tidy_comb</span>(<span class="st">&quot;Paris&quot;</span>, state.name)</a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="co">#&gt; # A tibble: 50 x 2</span></a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="co">#&gt;    V1          V2   </span></a>
-<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt;  * &lt;chr&gt;       &lt;chr&gt;</span></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="co">#&gt;  1 Alabama     Paris</span></a>
-<a class="sourceLine" id="cb4-6" title="6"><span class="co">#&gt;  2 Alaska      Paris</span></a>
-<a class="sourceLine" id="cb4-7" title="7"><span class="co">#&gt;  3 Arizona     Paris</span></a>
-<a class="sourceLine" id="cb4-8" title="8"><span class="co">#&gt;  4 Arkansas    Paris</span></a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="co">#&gt;  5 California  Paris</span></a>
-<a class="sourceLine" id="cb4-10" title="10"><span class="co">#&gt;  6 Colorado    Paris</span></a>
-<a class="sourceLine" id="cb4-11" title="11"><span class="co">#&gt;  7 Connecticut Paris</span></a>
-<a class="sourceLine" id="cb4-12" title="12"><span class="co">#&gt;  8 Delaware    Paris</span></a>
-<a class="sourceLine" id="cb4-13" title="13"><span class="co">#&gt;  9 Florida     Paris</span></a>
-<a class="sourceLine" id="cb4-14" title="14"><span class="co">#&gt; 10 Georgia     Paris</span></a>
-<a class="sourceLine" id="cb4-15" title="15"><span class="co">#&gt; # … with 40 more rows</span></a></code></pre></div>
+<p>The <code>tidycomb()</code> &amp; <code>tidy_comb_all()</code>
+functions return all the possible combinations from a vector / a
+data.frame and a column / two vectors:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">library</span>(tidystringdist)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">tidy_comb_all</span>(LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>])</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 2</span></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co">#&gt;   V1    V2   </span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="co">#&gt; * &lt;chr&gt; &lt;chr&gt;</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a><span class="co">#&gt; 1 A     B    </span></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co">#&gt; 2 A     C    </span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a><span class="co">#&gt; 3 B     C</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="fu">tidy_comb_all</span>(iris, Species)</span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a><span class="co">#&gt; # A tibble: 3 × 2</span></span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a><span class="co">#&gt;   V1         V2        </span></span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a><span class="co">#&gt; * &lt;chr&gt;      &lt;chr&gt;     </span></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="co">#&gt; 1 setosa     versicolor</span></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a><span class="co">#&gt; 2 setosa     virginica </span></span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a><span class="co">#&gt; 3 versicolor virginica</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">tidy_comb</span>(<span class="st">&quot;Paris&quot;</span>, state.name)</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co">#&gt; # A tibble: 50 × 2</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="co">#&gt;    V1          V2   </span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="co">#&gt;  * &lt;chr&gt;       &lt;chr&gt;</span></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="co">#&gt;  1 Alabama     Paris</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co">#&gt;  2 Alaska      Paris</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="co">#&gt;  3 Arizona     Paris</span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="co">#&gt;  4 Arkansas    Paris</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="co">#&gt;  5 California  Paris</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="co">#&gt;  6 Colorado    Paris</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="co">#&gt;  7 Connecticut Paris</span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="co">#&gt;  8 Delaware    Paris</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co">#&gt;  9 Florida     Paris</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="co">#&gt; 10 Georgia     Paris</span></span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="co">#&gt; # ℹ 40 more rows</span></span></code></pre></div>
 </div>
 <div id="compute-string-distance" class="section level2">
 <h2>Compute string distance</h2>
-<p>Once you’ve got this data.frame, you can use <code>tidy_string_dist()</code> to compute string distance. This function takes a data.frame, the two columns containing the strings, and one or more stringdist methods.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">comb &lt;-<span class="st"> </span><span class="kw">tidy_comb_all</span>(state.name) </a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="kw">tidy_stringdist</span>(comb)</a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="co">#&gt; # A tibble: 1,225 x 12</span></a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="co">#&gt;    V1    V2      osa    lv    dl hamming   lcs qgram cosine jaccard    jw</span></a>
-<a class="sourceLine" id="cb5-5" title="5"><span class="co">#&gt;  * &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="co">#&gt;  1 Alab… Alas…     3     3     3     Inf     5     5  0.216   0.571 0.254</span></a>
-<a class="sourceLine" id="cb5-7" title="7"><span class="co">#&gt;  2 Alab… Ariz…     5     5     5       5    10    10  0.581   0.8   0.476</span></a>
-<a class="sourceLine" id="cb5-8" title="8"><span class="co">#&gt;  3 Alab… Arka…     6     6     6     Inf     9     9  0.440   0.778 0.399</span></a>
-<a class="sourceLine" id="cb5-9" title="9"><span class="co">#&gt;  4 Alab… Cali…     8     8     8     Inf    13    11  0.481   0.818 0.535</span></a>
-<a class="sourceLine" id="cb5-10" title="10"><span class="co">#&gt;  5 Alab… Colo…     6     6     6     Inf    11    11  0.704   0.778 0.488</span></a>
-<a class="sourceLine" id="cb5-11" title="11"><span class="co">#&gt;  6 Alab… Conn…    11    11    11     Inf    18    18  1       1     1    </span></a>
-<a class="sourceLine" id="cb5-12" title="12"><span class="co">#&gt;  7 Alab… Dela…     5     5     5     Inf     9     9  0.440   0.778 0.399</span></a>
-<a class="sourceLine" id="cb5-13" title="13"><span class="co">#&gt;  8 Alab… Flor…     5     5     5       5    10    10  0.581   0.8   0.476</span></a>
-<a class="sourceLine" id="cb5-14" title="14"><span class="co">#&gt;  9 Alab… Geor…     6     6     6       6    12    12  0.686   0.909 0.571</span></a>
-<a class="sourceLine" id="cb5-15" title="15"><span class="co">#&gt; 10 Alab… Hawa…     5     5     5     Inf     9     9  0.474   0.875 0.460</span></a>
-<a class="sourceLine" id="cb5-16" title="16"><span class="co">#&gt; # … with 1,215 more rows, and 1 more variable: soundex &lt;dbl&gt;</span></a></code></pre></div>
-<p>Default call compute all the methods. You can use specific method with the <code>method</code> argument:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">comb &lt;-<span class="st"> </span><span class="kw">tidy_comb_all</span>(state.name)</a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="kw">tidy_stringdist</span>(comb, <span class="dt">method =</span> <span class="kw">c</span>(<span class="st">&quot;osa&quot;</span>,<span class="st">&quot;jw&quot;</span>))</a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="co">#&gt; # A tibble: 1,225 x 4</span></a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="co">#&gt;    V1      V2            osa    jw</span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="co">#&gt;  * &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;</span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="co">#&gt;  1 Alabama Alaska          3 0.254</span></a>
-<a class="sourceLine" id="cb6-7" title="7"><span class="co">#&gt;  2 Alabama Arizona         5 0.476</span></a>
-<a class="sourceLine" id="cb6-8" title="8"><span class="co">#&gt;  3 Alabama Arkansas        6 0.399</span></a>
-<a class="sourceLine" id="cb6-9" title="9"><span class="co">#&gt;  4 Alabama California      8 0.535</span></a>
-<a class="sourceLine" id="cb6-10" title="10"><span class="co">#&gt;  5 Alabama Colorado        6 0.488</span></a>
-<a class="sourceLine" id="cb6-11" title="11"><span class="co">#&gt;  6 Alabama Connecticut    11 1    </span></a>
-<a class="sourceLine" id="cb6-12" title="12"><span class="co">#&gt;  7 Alabama Delaware        5 0.399</span></a>
-<a class="sourceLine" id="cb6-13" title="13"><span class="co">#&gt;  8 Alabama Florida         5 0.476</span></a>
-<a class="sourceLine" id="cb6-14" title="14"><span class="co">#&gt;  9 Alabama Georgia         6 0.571</span></a>
-<a class="sourceLine" id="cb6-15" title="15"><span class="co">#&gt; 10 Alabama Hawaii          5 0.460</span></a>
-<a class="sourceLine" id="cb6-16" title="16"><span class="co">#&gt; # … with 1,215 more rows</span></a></code></pre></div>
+<p>Once you’ve got this data.frame, you can use
+<code>tidy_string_dist()</code> to compute string distance. This
+function takes a data.frame, the two columns containing the strings, and
+one or more stringdist methods.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>comb <span class="ot">&lt;-</span> <span class="fu">tidy_comb_all</span>(state.name) </span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">tidy_stringdist</span>(comb)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1,225 × 12</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a><span class="co">#&gt;    V1      V2           osa    lv    dl hamming   lcs qgram cosine jaccard    jw</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a><span class="co">#&gt;  * &lt;chr&gt;   &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" tabindex="-1"></a><span class="co">#&gt;  1 Alabama Alaska         3     3     3     Inf     5     5  0.216   0.571 0.254</span></span>
+<span id="cb5-7"><a href="#cb5-7" tabindex="-1"></a><span class="co">#&gt;  2 Alabama Arizona        5     5     5       5    10    10  0.581   0.8   0.476</span></span>
+<span id="cb5-8"><a href="#cb5-8" tabindex="-1"></a><span class="co">#&gt;  3 Alabama Arkansas       6     6     6     Inf     9     9  0.440   0.778 0.399</span></span>
+<span id="cb5-9"><a href="#cb5-9" tabindex="-1"></a><span class="co">#&gt;  4 Alabama California     8     8     8     Inf    13    11  0.481   0.818 0.535</span></span>
+<span id="cb5-10"><a href="#cb5-10" tabindex="-1"></a><span class="co">#&gt;  5 Alabama Colorado       6     6     6     Inf    11    11  0.704   0.778 0.488</span></span>
+<span id="cb5-11"><a href="#cb5-11" tabindex="-1"></a><span class="co">#&gt;  6 Alabama Connectic…    11    11    11     Inf    18    18  1       1     1    </span></span>
+<span id="cb5-12"><a href="#cb5-12" tabindex="-1"></a><span class="co">#&gt;  7 Alabama Delaware       5     5     5     Inf     9     9  0.440   0.778 0.399</span></span>
+<span id="cb5-13"><a href="#cb5-13" tabindex="-1"></a><span class="co">#&gt;  8 Alabama Florida        5     5     5       5    10    10  0.581   0.8   0.476</span></span>
+<span id="cb5-14"><a href="#cb5-14" tabindex="-1"></a><span class="co">#&gt;  9 Alabama Georgia        6     6     6       6    12    12  0.686   0.909 0.571</span></span>
+<span id="cb5-15"><a href="#cb5-15" tabindex="-1"></a><span class="co">#&gt; 10 Alabama Hawaii         5     5     5     Inf     9     9  0.474   0.875 0.460</span></span>
+<span id="cb5-16"><a href="#cb5-16" tabindex="-1"></a><span class="co">#&gt; # ℹ 1,215 more rows</span></span>
+<span id="cb5-17"><a href="#cb5-17" tabindex="-1"></a><span class="co">#&gt; # ℹ 1 more variable: soundex &lt;dbl&gt;</span></span></code></pre></div>
+<p>Default call compute all the methods. You can use specific method
+with the <code>method</code> argument:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>comb <span class="ot">&lt;-</span> <span class="fu">tidy_comb_all</span>(state.name)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="fu">tidy_stringdist</span>(comb, <span class="at">method =</span> <span class="fu">c</span>(<span class="st">&quot;osa&quot;</span>,<span class="st">&quot;jw&quot;</span>))</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="co">#&gt; # A tibble: 1,225 × 4</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a><span class="co">#&gt;    V1      V2            osa    jw</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co">#&gt;  * &lt;chr&gt;   &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="co">#&gt;  1 Alabama Alaska          3 0.254</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a><span class="co">#&gt;  2 Alabama Arizona         5 0.476</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a><span class="co">#&gt;  3 Alabama Arkansas        6 0.399</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a><span class="co">#&gt;  4 Alabama California      8 0.535</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a><span class="co">#&gt;  5 Alabama Colorado        6 0.488</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a><span class="co">#&gt;  6 Alabama Connecticut    11 1    </span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a><span class="co">#&gt;  7 Alabama Delaware        5 0.399</span></span>
+<span id="cb6-13"><a href="#cb6-13" tabindex="-1"></a><span class="co">#&gt;  8 Alabama Florida         5 0.476</span></span>
+<span id="cb6-14"><a href="#cb6-14" tabindex="-1"></a><span class="co">#&gt;  9 Alabama Georgia         6 0.571</span></span>
+<span id="cb6-15"><a href="#cb6-15" tabindex="-1"></a><span class="co">#&gt; 10 Alabama Hawaii          5 0.460</span></span>
+<span id="cb6-16"><a href="#cb6-16" tabindex="-1"></a><span class="co">#&gt; # ℹ 1,215 more rows</span></span></code></pre></div>
 </div>
 </div>
 
+
+
+<!-- code folding -->
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
